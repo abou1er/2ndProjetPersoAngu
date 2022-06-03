@@ -1,0 +1,94 @@
+{
+  "chambre": [
+    {
+      "id": 1,
+      "lit": "double",
+      "prix": 150,
+      "ville": "Paris",
+      "classement": 3,
+      "nomDeChambre": "Oméga One",
+      "urlPics": "../../../assets/img/paris01.jpg",
+      "description": "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+    },
+    {
+      "id": 2,
+      "lit": "simple",
+      "prix": 450,
+      "ville": "Marseille",
+      "classement": 5,
+      "nomDeChambre": "Oméga Two",
+      "urlPics": "../../../assets/img/marseille01.jpg",
+      "description": "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+    },
+    {
+      "id": 3,
+      "lit": "triple",
+      "prix": 350,
+      "ville": "Paris",
+      "classement": 3,
+      "nomDeChambre": "Oméga 3",
+      "urlPics": "../../../assets/img/paris04.jpg",
+      "description": "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+    },
+    {
+      "id": 4,
+      "lit": "simple",
+      "prix": 250,
+      "ville": "Marseille",
+      "classement": 5,
+      "nomDeChambre": "Oméga 4",
+      "urlPics": "../../../assets/img/marseille02.jpg",
+      "description": "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+    },
+    {
+      "id": 5,
+      "lit": "double",
+      "prix": 550,
+      "ville": "Monaco",
+      "classement": 5,
+      "nomDeChambre": "Oméga 5",
+      "urlPics": "../../../assets/img/monaco01.jpg",
+      "description": "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+    },
+    {
+      "id": 6,
+      "lit": "simple",
+      "prix": 750,
+      "ville": "Nice",
+      "classement": 3,
+      "nomDeChambre": "Oméga 6",
+      "urlPics": "../../../assets/img/monaco02.jpg",
+      "description": "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+    },
+    {
+      "id": 7,
+      "lit": "triple",
+      "prix": 850,
+      "ville": "Paris",
+      "classement": 4,
+      "nomDeChambre": "Oméga 7",
+      "urlPics": "../../../assets/img/paris03.jpg",
+      "description": "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+    },
+    {
+      "id": 10,
+      "lit": "simple",
+      "prix": 750,
+      "ville": "Monaco",
+      "classement": 4,
+      "nomDeChambre": "Oméga 10",
+      "urlPics": "../../../assets/img/monaco03.jpg",
+      "description": "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

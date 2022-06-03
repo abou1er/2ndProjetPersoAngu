@@ -1,0 +1,15 @@
+.contenTextCentral{
+    background-image: url("../../../assets/img/accueil-luxe4.jpg");
+    background-size: cover;
+    /* backdrop-filter: blur(50px); */
+    /* border: thick double #cae75f; */
+    border: 4mm ridge rgba(211, 220, 50, .6);
+    
+    
+}
+
+.textCentral{
+    -webkit-backdrop-filter: blur(80px);
+    backdrop-filter: blur(80px);
+}
+

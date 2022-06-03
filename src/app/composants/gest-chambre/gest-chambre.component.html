@@ -1,0 +1,38 @@
+
+<div class="d-flex justify-content-center mb-5 ">
+    <h3 class="me-2 pt-2">Gestions des chambres</h3>
+</div>
+
+<div class="row mb-5">
+    <div class="col-9"></div>
+        <div class="col-3">
+            <a routerLink="/ajouterunechambre" class="text-decoration-none border border-primary p-3 list-group-item-action list-group-item-info">Ajouter une chambre</a>
+        </div>
+</div>
+
+
+<div class="container mb-5">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3  g-4">
+        <div class="col" *ngFor="let cA of chambresAdmin">
+            <div class="card shadow bg-body rounded h-100 view-overlay-zoom">
+                <img src="{{cA.urlPics}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p>Ville : <strong>{{cA.ville}}</strong>  </p>
+                    
+                    <p>Nom de la chambre : <strong>{{cA.nomDeChambre}}</strong></p>
+                    <p class="card-text">{{cA.description}}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between">
+                        <small class="text-muted">Prix <strong>{{cA.prix}}€</strong></small>
+                        <button class="bg-danger shadow rounded" (click)="delete(cA.id)">Supprimer {{cA.nomDeChambre}}</button>
+                    </div>
+                    
+                </div>
+            </div>
+            
+
+        </div>
+
+    </div>
+</div>

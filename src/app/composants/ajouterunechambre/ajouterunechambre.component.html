@@ -1,0 +1,61 @@
+
+<div class="d-flex justify-content-center">
+    <h2 >Ajouter une chambre</h2>
+</div>
+<!-- <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+    <input type="email" name="email" ngModel required>
+    <input type="password" name="password" ngModel required
+    minlength="5">
+    <button type="submit">Valider</button>
+    </form> -->
+    
+    
+
+<!-- FORM 1er champs-->
+    
+    <div class="container mt-5">
+        <form #chambresAdmin="ngForm" (ngSubmit)="addInRooms(chambresAdmin)" class="row g-3 shadow-lg mb-4 p-2 bg-body rounded">
+
+            <div name="lit1" class="col-md-4">
+                <label  for="inputState" class="form-label">Type de lit</label>
+                <select name="lit" ngModel="" id="lit" class="form-select">
+                    <option>choisir</option>
+                    <option>simple</option>
+                    <option>double</option>
+                    
+                </select>
+            </div>
+    
+            <div class="col-md-4">
+                <label for="ville" class="form-label">Ville</label>
+                <input type="text"  class="form-control"  name="ville" ngModel required>
+            </div>
+            <div class="col-md-4">
+                <label for="classement" class="form-label">Classement</label>
+                <input type="text" class="form-control" id="classement" name="classement" ngModel required>
+            </div>
+
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Description de la chambre</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="description" ngModel required>
+            </div>
+            <div class="col-12">
+                <label for="inputAddress2" class="form-label">urlPics</label>
+                <input type="text" class="form-control" id="inputAddress2"   placeholder="urlPics: ../../../assets/img/paris01.jpg" name="urlPics" ngModel required>
+            </div>
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">Nom de la chambre</label>
+                <input type="text" class="form-control" id="inputCity" name="nomDeChambre" ngModel required>
+            </div>
+
+            <div class="col-md-2 mb-5">
+                <label for="price" class="form-label">Prix de la chambre</label>
+                <input type="number" class="form-control" id="price" name="prix" ngModel required>
+            </div>
+            
+            <div class="col-12 mt-5">
+                <button type="submit" class="btn btn-primary">Ajouter la chambre</button>
+            </div>
+</form>
+
+</div>

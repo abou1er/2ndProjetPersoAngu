@@ -1,0 +1,25 @@
+
+
+<div class="d-flex mt-5 mb-3 justify-content-center ">
+    <h3 class="me-2 pt-2">Nos chambres</h3>
+
+</div>
+
+<div class="container mb-5">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col" *ngFor="let c of chambres">
+            <div class="card h-100 shadow bg-body" >
+                <img src="{{c.urlPics}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{c.ville}} {{c.nomDeChambre}}</h5>
+                    <p class="card-text">{{c.description}}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Prix <strong>{{c.prix}}€</strong></small>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
