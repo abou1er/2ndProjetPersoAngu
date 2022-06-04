@@ -2,13 +2,13 @@
   "chambre": [
     {
       "id": 1,
-      "lit": "double",
-      "prix": 150,
-      "ville": "Paris",
+      "lit": "simple",
+      "prix": 650,
+      "ville": "Nantes",
       "classement": 3,
       "nomDeChambre": "Oméga One",
       "urlPics": "../../../assets/img/paris01.jpg",
-      "description": "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+      "description": "Nantes Nantes NantesNantesNantesNantesNantesNantesNantesNantesNantesNantesNantesNantesNantesNantes"
     },
     {
       "id": 2,

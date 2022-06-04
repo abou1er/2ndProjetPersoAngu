@@ -22,4 +22,13 @@ export class GestChambreService {
     return this.http.delete("http://localhost:3000/chambre/"+id)
   }
 
+  roomUpd(r:any){
+    return this.http.put("http://localhost:3000/chambre/"+r.id, r)
+  }
+
+  getWithkeyword(inpSearching:any){
+    return this.http.get("http://localhost:3000/chambre?q="+inpSearching)
+  }
+
+
 }
