@@ -28,6 +28,10 @@ export class GestChambreComponent implements OnInit {
   searchIsVide : boolean = false  // va servir à jouer avec le ngif si aucune valeur correspondante image.pngne ressort
   totalSearchInp : boolean = false
   
+    //tableau pour tri catégorie
+    categories= [{lit:"simple"}, {lit:"double"},{lit:"triple"}]
+    categoOries= ["simple","double","triple"];
+    //fin pour tri catégorie
 
   constructor(private gestChambreService : GestChambreService) { }
 
@@ -60,6 +64,15 @@ export class GestChambreComponent implements OnInit {
 
     })
   }
+
+            // trie par categorie
+            onCategory(c:any){
+              this.gestChambreService.getbyCatego(c).subscribe(resultDeSearchByCatego=>{
+                this.chambresAdmin = resultDeSearchByCatego;
+            }) //this.chambresAdmin va être égal à se que la méthode va retourner 
+              console.log("type c est : ", c);
+              
+            }
 
   searchInpt(inpSearching:any){
     this.valInptSearch = inpSearching.nameInptSearchBar;
@@ -94,7 +107,7 @@ export class GestChambreComponent implements OnInit {
         })
         }
     
-
+          // trie par categorie
         // onCategory(c:any){
         //   this.gestChambreService.getbyCatego(c).subscribe(resultDeSearchByCatego=>{
         //     this.chambresAdmin = resultDeSearchByCatego;

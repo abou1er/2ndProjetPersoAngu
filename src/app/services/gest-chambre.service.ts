@@ -36,4 +36,11 @@ export class GestChambreService {
     // return this.http.get("http://localhost:3000/produits?price_gte="+min +"&price_lte="+max)
   }
 
+  getbyCatego(catego:any){
+    return this.http.get(`http://localhost:3000/chambre?lit=${catego}`)
+  
+  }
+  //http://localhost:3000/produits?categorie=fruit
+  
+
 }

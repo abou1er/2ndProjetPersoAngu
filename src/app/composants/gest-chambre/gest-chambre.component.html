@@ -1,5 +1,5 @@
-
-<div class="mx-3 container-fluid"> <!----------------------------------------------- searchByPrice -->
+<div class="mx-3 container-fluid">
+    <!----------------------------------------------- searchByPrice -->
     <form #formTrie="ngForm" (ngSubmit)="searchByPrice(formTrie.value)" class="d-flex mt-5" role="search">
         <!-- Le composant va récupérer l'ensemble des données du formulaire sous forme dobjet et en précisant lename je récuperai dans le composant seulement la valeur de linput du même name qui m'intéresse -->
         <div class="row g-3 ">
@@ -7,10 +7,11 @@
             <div class="col-auto">
                 <label for="inputNumbMin" class="col-form-label">Prix minimum</label>
                 <input type="number" name="nameMin" class="form-control" placeholder="prix minimum" ngModel>
-            </div>                      
+            </div>
             <div class="col-auto">
-                <label class="col-form-label">Prix maximum</label> <input type="number" name="nameMax" class="form-control" placeholder="prix maximum" ngModel>
-                
+                <label class="col-form-label">Prix maximum</label> <input type="number" name="nameMax"
+                    class="form-control" placeholder="prix maximum" ngModel>
+
             </div>
 
             <div class=""><button type="submit" class="btn btn-danger">Trier</button></div>
@@ -27,6 +28,33 @@
     <div class="d-flex justify-content-center mb-5 ">
         <h3 class="mt-5 ">Gestions des chambres</h3>
     </div>
+
+    <!-- filtre par catégorie -->
+    <div class="row">
+        <div class="btn-group col-3">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Filtre par catégorie
+            </button>
+            <ul class="dropdown-menu">
+                <!--menu déroulant-->
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li *ngFor="let c of categories">
+                    <!--dans component création de mon tableau [categories] contenant l'ensemble de mes categories/ c.type car ici fait avec un objet mais peu être fait avec un tableau simple/ boucle l'ensemble de mon tableau et l'affiche -->
+                    <button class="rounded mt-1 w-100" (click)="onCategory(c.lit)" type="button"> {{c.lit}} </button>
+                    <!--mon tableau avc exactement les valeurs que mes catégories-->
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- fin filtre par catégorie -->
+
 
     <div class="row">
         <!-- --------------input recherche par mot clé -->
@@ -53,17 +81,20 @@
         </div>
     </div>
 
-    <!-- REtour aucune chmabre correspondante  -->
+    <!-- REtour aucune chambre correspondante  -->
     <!-- *ngIf si sa valeur est false n'affiche pas son contenue comme un display:none ->    -->
     <div class="container p-5 m-5 border border-5 border-info" *ngIf="searchIsVide">
-        <p>Chambre trouvée : <strong>{{this.totalChambre}}</strong>  <br> Ils n'y a pas de chambre correspendant a ce mot <strong>{{valInptSearch}}</strong></p>
+        <p>Chambre trouvée : <strong>{{this.totalChambre}}</strong> <br> Ils n'y a pas de chambre correspendant a ce mot
+            <strong>{{valInptSearch}}</strong></p>
     </div>
 
 
     <!-- REtour total chmabre correspondante  -->
     <!-- *ngIf si sa valeur est false n'affiche pas son contenue comme un display:none ->    -->
     <div class="container p-5 m-5 border border-5 border-success" *ngIf="totalSearchInp">
-        <p>Chambre trouvée : <strong>{{this.totalChambre}}</strong>  <br> Il y a  correspondant à la recherche<strong>{{this.totalChambre}}</strong> correspondant à la recherche <strong>{{valInptSearch}}</strong></p>
+        <p>Chambre trouvée : <strong>{{this.totalChambre}}</strong> <br> Il y a correspondant à la
+            recherche<strong>{{this.totalChambre}}</strong> correspondant à la recherche
+            <strong>{{valInptSearch}}</strong></p>
     </div>
 
     <!-- debut carte -->
@@ -111,7 +142,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalToggleLabel">Modifier {{chambreAmodif.nomDeChambre}}
-                        <small>situé à</small> {{chambreAmodif.ville}}</h5>
+                        <small>situé à</small> {{chambreAmodif.ville}}
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
