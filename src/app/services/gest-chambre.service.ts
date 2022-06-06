@@ -12,6 +12,7 @@ export class GestChambreService {
 
   getRoomsAdmin(){
     return this.http.get("http://localhost:3000/chambre");
+    // return this.http.get("http://localhost:3000/chambre/");    test si nomdufichier.format sa le fait?
   }
 
   addRoomAdmin(chambre : any){
@@ -30,5 +31,9 @@ export class GestChambreService {
     return this.http.get("http://localhost:3000/chambre?q="+inpSearching)
   }
 
+  getbyprice(min:any, max:any){
+    return this.http.get(`http://localhost:3000/chambre?prix_gte=${min}&prix_lte=${max}`)  
+    // return this.http.get("http://localhost:3000/produits?price_gte="+min +"&price_lte="+max)
+  }
 
 }

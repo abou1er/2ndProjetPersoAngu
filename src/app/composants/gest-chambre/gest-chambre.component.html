@@ -1,34 +1,81 @@
-<div class="bg-secondary">
-    <div class="d-flex justify-content-center mb-5 ">
-        <h3 class="me-2 pt-2">Gestions des chambres</h3>
-    </div>
 
-<div class="row">
+<div class="mx-3 container-fluid"> <!----------------------------------------------- searchByPrice -->
+    <form #formTrie="ngForm" (ngSubmit)="searchByPrice(formTrie.value)" class="d-flex mt-5" role="search">
+        <!-- Le composant va récupérer l'ensemble des données du formulaire sous forme dobjet et en précisant lename je récuperai dans le composant seulement la valeur de linput du même name qui m'intéresse -->
+        <div class="row g-3 ">
+
+            <div class="col-auto">
+                <label for="inputNumbMin" class="col-form-label">Prix minimum</label>
+                <input type="number" name="nameMin" class="form-control" placeholder="prix minimum" ngModel>
+            </div>                      
+            <div class="col-auto">
+                <label class="col-form-label">Prix maximum</label> <input type="number" name="nameMax" class="form-control" placeholder="prix maximum" ngModel>
+                
+            </div>
+
+            <div class=""><button type="submit" class="btn btn-danger">Trier</button></div>
+
+        </div>
+    </form>
+
     <div class="d-flex justify-content-end">
-        <form #inpSearching="ngForm" (ngSubmit)="searchInpt(inpSearching.value)"   class="d-flex" role="search"> <!-- #identificationFormulaire  (ngSubmit)au submit lance méthode avec la valeur du formulaire-->
-            <input class="form-control me-2" type="text" placeholder="Chercher une chambre"  aria-label="Search" name="nameInptSearchBar" ngModel >
-            <button class="btn btn-outline-success" type="submit">Chercher une chambre</button>
-          </form>
+        <button type="button" class="btn btn-info" (click)="roomsAdmin()">Afficher tout les produits</button>
     </div>
-
 </div>
 
+<div class="bg-secondary">
+    <div class="d-flex justify-content-center mb-5 ">
+        <h3 class="mt-5 ">Gestions des chambres</h3>
+    </div>
+
+    <div class="row">
+        <!-- --------------input recherche par mot clé -->
+        <div class="d-flex justify-content-end">
+            <form #inpSearching="ngForm" (ngSubmit)="searchInpt(inpSearching.value)" class="d-flex" role="search">
+                <!-- #identificationFormulaire  (ngSubmit)au submit lance méthode avec la valeur du formulaire-->
+                <input class="form-control me-2" type="text" placeholder="Chercher une chambre" aria-label="Search"
+                    name="nameInptSearchBar" ngModel>
+                <button class="btn text-dark btn-outline-success bg-light" type="submit">Chercher une chambre</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- --------------btn ajout de chambre -->
     <div class="row mt-5 mb-5">
         <div class="col-9"></div>
         <div class="col-3">
-            <button>            <a routerLink="/ajouterunechambre"
-                class="text-decoration-none border border-primary p-3 list-group-item-action list-group-item-info">Ajouter
-                une chambre</a></button>
+            <a routerLink="/ajouterunechambre"
+                class="text-decoration-none border border-primary p-3 list-group-item-action list-group-item-info">
+                <button> Ajouter
+                    une chambre</button> </a>
 
         </div>
     </div>
 
+    <!-- REtour aucune chmabre correspondante  -->
+    <!-- *ngIf si sa valeur est false n'affiche pas son contenue comme un display:none ->    -->
+    <div class="container p-5 m-5 border border-5 border-info" *ngIf="searchIsVide">
+        <p>Chambre trouvée : <strong>{{this.totalChambre}}</strong>  <br> Ils n'y a pas de chambre correspendant a ce mot <strong>{{valInptSearch}}</strong></p>
+    </div>
+
+
+    <!-- REtour total chmabre correspondante  -->
+    <!-- *ngIf si sa valeur est false n'affiche pas son contenue comme un display:none ->    -->
+    <div class="container p-5 m-5 border border-5 border-success" *ngIf="totalSearchInp">
+        <p>Chambre trouvée : <strong>{{this.totalChambre}}</strong>  <br> Il y a  correspondant à la recherche<strong>{{this.totalChambre}}</strong> correspondant à la recherche <strong>{{valInptSearch}}</strong></p>
+    </div>
+
     <!-- debut carte -->
-    <div class="container mb-5">
+    <div class="container pb-4 mb-5">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3  g-4">
             <div class="col" *ngFor="let cA of chambresAdmin">
                 <div class="card shadow bg-body rounded h-100 view-overlay-zoom">
                     <img src="{{cA.urlPics}}" class="card-img-top" alt="...">
+
+                    <!-- test lecture affichage img sans tout url. nom du fichier.format seulement -->
+                    <!-- <img src="../../../assets/img/{{cA.urlPics}}" class="card-img-top" alt="..."> -->
+
                     <div class="card-body">
                         <p>Ville : <strong>{{cA.ville}}</strong> </p>
                         <p>Type de lit : <strong>{{cA.lit}}</strong> </p>
@@ -63,68 +110,79 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalToggleLabel">Modifier {{chambreAmodif.nomDeChambre}} <small>situé à</small>  {{chambreAmodif.ville}}</h5>
+                    <h5 class="modal-title" id="exampleModalToggleLabel">Modifier {{chambreAmodif.nomDeChambre}}
+                        <small>situé à</small> {{chambreAmodif.ville}}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    
-<!-- FORM room-->
-    
-    <div class="container mt-5">
-        <form class="row g-3 shadow-lg mb-4 p-2 bg-body rounded">
 
-            <div name="lit1" class="col-md-4">
-                <label  for="inputState" class="form-label">Type de lit</label>
-                <select name="lit" ngModel="" id="lit" [(ngModel)]="chambreAmodif.lit" class="form-select">
-                    
-                    <option>simple</option>
-                    <option>double</option>
-                    
-                </select>
-            </div>
-    
-            <div class="col-md-10">
-                <label for="ville" class="form-label">Ville</label>
-                <input type="text"  class="form-control"  name="ville" [(ngModel)]="chambreAmodif.ville" required>
+                    <!-- FORM room-->
 
-                <p> est ca ca marche? {{chambreAmodif.ville}} </p>  <!--Dans une modal fullscreen je pourrai afficher button plus de détail -->
+                    <div class="container mt-5">
+                        <form class="row g-3 shadow-lg mb-4 p-2 bg-body rounded">
 
-            </div>
-            <div class="col-md-4">
-                <label for="classement" class="form-label">Classement</label>
-                <input type="text" class="form-control" id="classement" name="classement" [(ngModel)]="chambreAmodif.classement" required>
-            </div>
+                            <div name="lit1" class="col-md-4">
+                                <label for="inputState" class="form-label">Type de lit</label>
+                                <select name="lit" ngModel="" id="lit" [(ngModel)]="chambreAmodif.lit"
+                                    class="form-select">
 
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Description de la chambre</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="description" [(ngModel)]="chambreAmodif.description" required>
-            </div>
-            <div class="col-12">
-                <label for="inputAddress2" class="form-label">urlPics</label>
-                <input type="text" class="form-control" id="inputAddress2"  name="urlPics" [(ngModel)]="chambreAmodif.urlPics" required>
-            </div>
-            <div class="col-md-10">
-                <label for="inputCity" class="form-label">Nom de la chambre</label>
-                <input type="text" class="form-control" id="inputCity" name="nomDeChambre" [(ngModel)]="chambreAmodif.nomDeChambre" required>
-            </div>
+                                    <option>simple</option>
+                                    <option>double</option>
 
-            <div class="col-md-4 mb-5">
-                <label for="price" class="form-label">Prix de la chambre</label>
-                <input type="number" class="form-control" id="price" name="prix" [(ngModel)]="chambreAmodif.prix" required>
-            </div>
-            
-            <div class="col-12 mt-5">
-                <!-- <button type="submit" class="btn btn-primary">Ajouter la chambre</button> -->
-                <button type="submit" (click)="roomUpdate()" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Modifier</button>
+                                </select>
+                            </div>
 
-                <button type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close"> Fermer</button>
-            </div>
-</form>
+                            <div class="col-md-10">
+                                <label for="ville" class="form-label">Ville</label>
+                                <input type="text" class="form-control" name="ville" [(ngModel)]="chambreAmodif.ville"
+                                    required>
 
-</div>
-<!-- fin form -->
+                                <p> est ca ca marche? {{chambreAmodif.ville}} </p>
+                                <!--Dans une modal fullscreen je pourrai afficher button plus de détail -->
+
+                            </div>
+                            <div class="col-md-4">
+                                <label for="classement" class="form-label">Classement</label>
+                                <input type="text" class="form-control" id="classement" name="classement"
+                                    [(ngModel)]="chambreAmodif.classement" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="inputAddress" class="form-label">Description de la chambre</label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+                                    name="description" [(ngModel)]="chambreAmodif.description" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="inputAddress2" class="form-label">urlPics</label>
+                                <input type="text" class="form-control" id="inputAddress2" name="urlPics"
+                                    [(ngModel)]="chambreAmodif.urlPics" required>
+                            </div>
+                            <div class="col-md-10">
+                                <label for="inputCity" class="form-label">Nom de la chambre</label>
+                                <input type="text" class="form-control" id="inputCity" name="nomDeChambre"
+                                    [(ngModel)]="chambreAmodif.nomDeChambre" required>
+                            </div>
+
+                            <div class="col-md-4 mb-5">
+                                <label for="price" class="form-label">Prix de la chambre</label>
+                                <input type="number" class="form-control" id="price" name="prix"
+                                    [(ngModel)]="chambreAmodif.prix" required>
+                            </div>
+
+                            <div class="col-12 mt-5">
+                                <!-- <button type="submit" class="btn btn-primary">Ajouter la chambre</button> -->
+                                <button type="submit" (click)="roomUpdate()" class="btn btn-primary"
+                                    data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Modifier</button>
+
+                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal"
+                                    aria-label="Close"> Fermer</button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- fin form -->
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -139,11 +197,11 @@
                 <div class="modal-body">
                     Les information ont bien étaient modifiées.
                 </div>
-                
+
             </div>
         </div>
     </div>
-    <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>
+
 
 
 
