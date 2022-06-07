@@ -32,7 +32,7 @@
     <!-- filtre par catégorie -->
     <div class="row">
         <div class="btn-group col-3">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+            <button type="button" class="btn btn-secondary bg-light text-dark dropdown-toggle" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Filtre par catégorie
             </button>
@@ -112,7 +112,12 @@
                         <p>Type de lit : <strong>{{cA.lit}}</strong> </p>
 
                         <p>Nom de la chambre : <strong>{{cA.nomDeChambre}}</strong></p>
-                        <p class="card-text">{{cA.description}}</p>
+                        <p class="card-text">{{cA.description | slice:0:70}} ...</p>
+
+                        <!-- BTN modal full description -->
+                        <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fulldecriptionModal"> afficher toute la description</button>
+                        
+                        <!-- BTN fin modal full description -->
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-between">
@@ -135,7 +140,33 @@
         </div>
     </div> <!-- fin carte -->
 
-    <!-- modal -->
+    <!-- MODAL FULLDESCRIPTION -->
+    <div class="modal fade " id="fulldecriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <!-- debut carte -->
+    <div class="container pb-4 mb-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3  g-4">
+            <div class="col-md-10">
+                <p>{{chambreAmodif.nomDeChambre}}</p>
+            </div>
+
+        </div>
+    </div> <!-- fin carte -->
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- modal UPDATE -->
     <div class="modal fade" id="modalFormUpdate" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
         tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -148,7 +179,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <!-- FORM room-->
+                    <!-- FORM roomUpdate -->
 
                     <div class="container mt-5">
                         <form class="row g-3 shadow-lg mb-4 p-2 bg-body rounded">
