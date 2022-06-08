@@ -52,6 +52,7 @@ export class ChambreComponent implements OnInit {
     this.totalPrice = (this.chambreInfoRecup.prix * this.userInfoRecup.nbJour)
     // this.totalPrice = parseInt(this.chambreInfoRecup.prix ) * parseInt(this.userInfoRecup.nbJour)
     this.userInfoRecup.totalSej = this.totalPrice
+    
     console.log("this.totalPrice= "+ this.totalPrice);
     
     this.chambreService.addUserProfile(u).subscribe(data=>{

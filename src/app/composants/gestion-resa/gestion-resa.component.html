@@ -2,7 +2,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th colspan="7">Réservation</th>
+            <th colspan="8">Réservation</th>
         </tr>
     </thead>
     <tbody>
@@ -14,31 +14,106 @@
             <td>Date d'arrivée : {{r.dateArrive}} </td>
             <td>Nombre de jour(s) prévu : {{r.nbJour}} </td>
             <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="resaRecupInfoUser(resa)" > Supprimer la reservation</button> </td>
-        
-          <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Supprimer la reservation de {{r.sex}} {{r.nom}} </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-         Etes vous sur de vouloir supprimer la reservation de {{r.sex}}  {{r.nom}} {{r.prenom}} du  {{r.dateArrive}} pour une durée de {{r.nbJour}}.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" (click)="delete(r.id)" class="btn btn-warning">Supprimé</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal -->
-        
-        
+
+            <td><!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addResa">
+                Ajout réservation
+              </button></td>
         </tr>
     </tbody>
 </table>
 
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="addResa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form (ngSubmit)="addInfUser(userForm)" #userForm="ngForm">
+          <div class="col-11 mb-3">
+            <label for="sex">Civilité</label>
+            <input type="text" name="sex" placeholder="sex" ngModel required>
+          </div>
+
+          <div class="col-11  mb-3">
+            <label for="nom">Nom</label>
+            <input class="text-uppercase" type="text" name="nom" placeholder="nom" ngModel required>
+          </div>
+
+          <div class="col-11 mb-3">
+            <label for="prenom">Prénom</label>
+            <input type="text" name="prenom" placeholder="prenom" ngModel required>
+          </div>
+          
+          <div class="col-11 mb-3">
+            <label for="nombreDepers">nombre De pers </label>
+            <input type="number" name="nombreDepers" placeholder="nombreDepers" ngModel required>
+          </div>
+
+          <div class="col-11 mb-3">
+            <label for="dateArrive">Date d'Arrive </label>
+            <input type="date" name="dateArrive" placeholder="dateArrive" ngModel required>
+          </div>
+
+          <div class="col-11 mb-3">
+            <label for="nbJour">Nombre de jour </label>
+            <input type="number" name="nbJour" placeholder="nbJour" ngModel required>
+          </div>
+
+          <ul class="dropdown-menu">
+            <!--menu déroulant-->
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+
+            <li *ngFor="let c of chambresAdmin">
+                <!--dans component création de mon tableau [categories] contenant l'ensemble de mes categories/ c.type car ici fait avec un objet mais peu être fait avec un tableau simple/ boucle l'ensemble de mon tableau et l'affiche -->
+                <!-- <button class="rounded mt-1 w-100" (click)="roomsAdmin(c.nombreDepers)" type="button"> {{c.lit}} </button> -->
+                <!--mon tableau avc exactement les valeurs que mes catégories-->
+            </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+        </ul>
+          
+          <button type="submit">Valider</button>
+          </form>
+
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Supprimer la reservation de {{this.recupInfoUserResa.sex}} {{this.recupInfoUserResa.nom}} </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       Etes vous sur de vouloir supprimer la reservation de {{this.recupInfoUserResa.sex}}  {{this.recupInfoUserResa.nom}} {{this.recupInfoUserResa.prenom}} du  {{this.recupInfoUserResa.dateArrive}} pour une durée de {{this.recupInfoUserResa.nbJour}}.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="delete(this.recupInfoUserResa.id)" class="btn btn-warning">Supprimé</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- fin modal -->
 
   

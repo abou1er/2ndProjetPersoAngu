@@ -9,13 +9,18 @@ import { GestionResaService } from 'src/app/services/gestion-resa.service';
 export class GestionResaComponent implements OnInit {
   reservations: any;
 
+  chambresAdmin: any;
+
+
   recupInfoUserResa : any = {
     id : "",
     sex: "",
+    nom:"",
     prenom:"",
     nombreDepers: "",
-      dateArrive: "",
-      nbJour: ""
+    dateArrive: "",
+    nbJour: "",
+    nomChambre:""
 
   }
 
@@ -23,6 +28,8 @@ export class GestionResaComponent implements OnInit {
 
   ngOnInit(): void {
     this.resa();
+    this.roomsAdmin()
+    console.log(this.chambresAdmin);
   }
 
   resa(){
@@ -33,10 +40,22 @@ export class GestionResaComponent implements OnInit {
     })
   }
 
-  resaRecupInfoUser(r:any){
+  roomsAdmin(){
+    this.gestionResaService.getRoomsAdmin().subscribe(data=>{
+      this.chambresAdmin = data;
+      console.log(this.chambresAdmin);
+    })
+  }
 
+  addInfUser(userForm:any){
+    console.log(userForm.value);
+    
+  }
+
+
+  resaRecupInfoUser(r:any){
     this.recupInfoUserResa = r;
-    // console.log("logrResa=" + this.recupInfoUserResa);
+    console.log("log R=" + r);
     
   }
 

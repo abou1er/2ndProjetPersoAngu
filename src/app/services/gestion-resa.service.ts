@@ -13,6 +13,16 @@ export class GestionResaService {
   }
 
 
+  getRoomsAdmin(){
+    return this.http.get("http://localhost:3000/chambre")
+  }
+
+
+
+  addUsers(userForm:any){
+    return this.http.post("http://localhost:3000/userInfo", userForm)
+  }
+
   deleteResa(id:any){
     return this.http.delete("http://localhost:3000/userInfo/"+id)
   }
