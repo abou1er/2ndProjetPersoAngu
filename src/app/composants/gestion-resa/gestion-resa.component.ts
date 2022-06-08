@@ -9,7 +9,18 @@ import { GestionResaService } from 'src/app/services/gestion-resa.service';
 export class GestionResaComponent implements OnInit {
   reservations: any;
 
-  chambresAdmin: any;
+  chambresAdmin: any 
+  // = {
+  //   classement : "",
+  //   description: "",
+  //   id:"",
+  //   lit:"",
+  //   nomDeChambre: "",
+  //   prix: "",
+  //   urlPics: "",
+  //   villes:""
+
+  // }
 
 
   recupInfoUserResa : any = {

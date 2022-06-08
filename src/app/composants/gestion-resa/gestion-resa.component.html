@@ -68,22 +68,17 @@
             <input type="number" name="nbJour" placeholder="nbJour" ngModel required>
           </div>
 
-          <ul class="dropdown-menu">
-            <!--menu déroulant-->
-            <li>
-                <hr class="dropdown-divider">
-            </li>
+          <div class="div">
+          <!-- select -->
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option *ngFor="let c of chambresAdmin" value="1" name="ville"> <p name="ville">{{c.nomDeChambre}}</p> <p name="prix"> {{c.prix}}€</p></option>
+            
+          </select>
+          <!-- finselect -->
+          <p></p>
+          </div>
 
-            <li *ngFor="let c of chambresAdmin">
-                <!--dans component création de mon tableau [categories] contenant l'ensemble de mes categories/ c.type car ici fait avec un objet mais peu être fait avec un tableau simple/ boucle l'ensemble de mon tableau et l'affiche -->
-                <!-- <button class="rounded mt-1 w-100" (click)="roomsAdmin(c.nombreDepers)" type="button"> {{c.lit}} </button> -->
-                <!--mon tableau avc exactement les valeurs que mes catégories-->
-            </li>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-        </ul>
-          
           <button type="submit">Valider</button>
           </form>
 
