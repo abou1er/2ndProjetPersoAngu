@@ -10,11 +10,19 @@ export class AjouterunechambreComponent implements OnInit {
 
   constructor(private chambreService : ChambreService) { }
 
+  
+
   ngOnInit(): void {
   }
 
   addInRooms(chambresAdmin:any){
-    this.chambreService.addRoomAdmin(chambresAdmin.value).subscribe(data=>{          
+    console.log("" + chambresAdmin);
+    this.chambreService.addRoomAdmin(chambresAdmin.value).subscribe(data=>{
+
+
+      console.log( data ,"données save");
+
+            
     })
     
   }

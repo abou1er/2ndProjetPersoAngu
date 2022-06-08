@@ -85,7 +85,8 @@
     <!-- *ngIf si sa valeur est false n'affiche pas son contenue comme un display:none ->    -->
     <div class="container p-5 m-5 border border-5 border-info" *ngIf="searchIsVide">
         <p>Chambre trouvée : <strong>{{this.totalChambre}}</strong> <br> Ils n'y a pas de chambre correspendant a ce mot
-            <strong>{{valInptSearch}}</strong></p>
+            <strong>{{valInptSearch}}</strong>
+        </p>
     </div>
 
 
@@ -94,7 +95,8 @@
     <div class="container p-5 m-5 border border-5 border-success" *ngIf="totalSearchInp">
         <p>Chambre trouvée : <strong>{{this.totalChambre}}</strong> <br> Il y a correspondant à la
             recherche<strong>{{this.totalChambre}}</strong> correspondant à la recherche
-            <strong>{{valInptSearch}}</strong></p>
+            <strong>{{valInptSearch}}</strong>
+        </p>
     </div>
 
     <!-- debut carte -->
@@ -102,10 +104,10 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3  g-4">
             <div class="col" *ngFor="let cA of chambresAdmin">
                 <div class="card shadow bg-body rounded h-100 view-overlay-zoom">
-                    <img src="{{cA.urlPics}}" class="card-img-top" alt="...">
+                    <!-- <img src="{{cA.urlPics}}" class="card-img-top" alt="..."> -->
 
                     <!-- test lecture affichage img sans tout url. nom du fichier.format seulement -->
-                    <!-- <img src="../../../assets/img/{{cA.urlPics}}" class="card-img-top" alt="..."> -->
+                    <img src="../../../assets/img/{{cA.urlPics}}" class="card-img-top" alt="...">
 
                     <div class="card-body">
                         <p>Ville : <strong>{{cA.ville}}</strong> </p>
@@ -115,8 +117,10 @@
                         <p class="card-text">{{cA.description | slice:0:70}} ...</p>
 
                         <!-- BTN modal full description -->
-                        <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fulldecriptionModal"> afficher toute la description</button>
-                        
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#fulldecriptionModal" (click)="recupInfoRoom(cA)"> afficher toute la
+                            description</button>
+
                         <!-- BTN fin modal full description -->
                     </div>
                     <div class="card-footer">
@@ -141,29 +145,41 @@
     </div> <!-- fin carte -->
 
     <!-- MODAL FULLDESCRIPTION -->
-    <div class="modal fade " id="fulldecriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal modal-dialog modal-xl " id="fulldecriptionModal" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-               <!-- debut carte -->
-    <div class="container pb-4 mb-5">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3  g-4">
-            <div class="col-md-10">
-                <p>{{chambreAmodif.nomDeChambre}}</p>
-            </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Situé à {{chambreAmodif.ville}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- debut carte -->
+                    <div class="col-12">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="..." class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{chambreAmodif.nomDeChambre}}</h5>
+                                        <p class="card-text">{{chambreAmodif.description}}</p>
+                                        <p class="card-text"><small class="text-muted">{{chambreAmodif.prix}}</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-        </div>
-    </div> <!-- fin carte -->
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send message</button>
+                        </div>
+
+                    </div> <!-- fin carte -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
 
 
     <!-- modal UPDATE -->

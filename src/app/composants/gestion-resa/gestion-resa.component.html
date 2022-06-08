@@ -1,1 +1,44 @@
 <p>gestion-resa works!</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th colspan="7">Réservation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of reservations">
+            <td>Civilité : {{r.sex}} </td>
+            <td>Nom : {{r.nom}}</td>
+            <td> Prénom : {{r.prenom}}</td>
+            <td>Nombre de personne : {{r.nombreDepers}}</td>
+            <td>Date d'arrivée : {{r.dateArrive}} </td>
+            <td>Nombre de jour(s) prévu : {{r.nbJour}} </td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="resaRecupInfoUser(resa)" > Supprimer la reservation</button> </td>
+        
+          <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Supprimer la reservation de {{r.sex}} {{r.nom}} </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         Etes vous sur de vouloir supprimer la reservation de {{r.sex}}  {{r.nom}} {{r.prenom}} du  {{r.dateArrive}} pour une durée de {{r.nbJour}}.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" (click)="delete(r.id)" class="btn btn-warning">Supprimé</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal -->
+        
+        
+        </tr>
+    </tbody>
+</table>
+
+
+  

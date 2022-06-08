@@ -1,5 +1,3 @@
-
-
 <div class="d-flex mt-5 mb-3 justify-content-center ">
     <h3 class="me-2 pt-2">Nos chambres</h3>
 
@@ -8,18 +6,133 @@
 <div class="container mb-5">
     <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
         <div class="col" *ngFor="let c of chambres">
-            <div class="card h-100 shadow bg-body" >
-                <img src="{{c.urlPics}}" class="card-img-top" alt="...">
+            <div class="card h-100 shadow bg-body">
+                <!-- <img src="{{c.urlPics}}" class="card-img-top" alt="..."> -->
+
+                <!-- test lecture affichage img sans tout url. nom du fichier.format seulement -->
+                <img src="../../../assets/img/{{c.urlPics}}" class="card-img-top" alt="...">
+
                 <div class="card-body">
-                    <h5 class="card-title">{{c.ville}} {{c.nomDeChambre}}</h5>
-                    <p class="card-text">{{c.description}}</p>
+                    <p class="card-title">Ville : <strong>{{c.ville}}</strong></p>
+                    <p>Nom de la chambre : <strong>{{c.nomDeChambre}}</strong></p>
+                    <p class="card-text"> Description {{c.description | slice:0:170}} ...</p>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Prix <strong>{{c.prix}}€</strong></small>
+
+                    <!-- BTN  -->
+                    <button class="bg-success shadow rounded" (click)="recupInfoRoom(c)" data-bs-toggle="modal"
+                        data-bs-target="#modalFormUser">
+                        Reserver la chambre</button>
                 </div>
             </div>
 
         </div>
 
+                        <!-- modal InfoUser -->
+                <div class="modal fade modal-xl" id="modalFormUser" aria-hidden="true" aria-labelledby="modalFormUser"
+                    tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 *ngIf="this.chambreInfoRecup" class="modal-title" id="exampleModalToggleLabel">Résevation pour {{chambreInfoRecup.nomDeChambre}}
+                                    <small>situé à</small> {{chambreInfoRecup.ville}}
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <!-- FORM addUser -->
+
+                                <div class="container mt-5">
+                                    <form   #f="ngForm"
+                                        class="row  g-3 shadow-lg mb-4 p-2 bg-body rounded">
+
+                                        <div name="sex" class="col-md-4">
+                                            <label for="inputState" class="form-label">Civilité</label>
+                                            <select name="sex"  class="form-select" ngModel required >
+
+                                                <option>monsieur</option>
+                                                <option>madame</option>
+
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="nom" class="form-label">Nom</label>
+                                            <input type="text"  class="form-control" name="nom" ngModel required>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="prenom" class="form-label">Prénom</label>
+                                            <input type="text" class="form-control" name="prenom"  ngModel required>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="nombreDepers" class="form-label">Nombre de personne
+                                                attendu</label>
+                                            <input type="number" class="form-control" 
+                                                name="nombreDepers" ngModel required>
+                                        </div>
+
+                                        <div class="col-">
+                                            <label for="dateArrive" class="form-label">Date d'arrivée</label>
+                                            <input type="date" class="form-control" 
+                                                placeholder="ex: 28/08/2022" name="dateArrive"  ngModel required>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="nbJour" class="form-label">Nombre de jours à resever</label>
+                                            <input type="number" class="form-control"  name="nbJour" ngModel required>
+                                        </div>
+
+                                        <div *ngIf="this.chambreInfoRecup" class="col-md-4 border border-dark">
+                                            <label for="nbJour" class="form-label">Prix de la chambre</label>
+                                            <p>{{chambreInfoRecup.prix}} €</p>
+                                        </div>
+
+                                        <div *ngIf="this.chambreInfoRecup" class="col-12 mt-5">
+                                            <!-- <button type="submit" class="btn btn-primary">Ajouter la chambre</button> -->
+                                            <button (click)="addUser(f.value)" class="btn btn-primary"
+                                                data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Réserver la
+                                                chambre {{chambreInfoRecup.nomDeChambre}}</button>
+
+                                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal"
+                                                aria-label="Close"> Fermer</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <!-- fin form -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade  modal-xl" id="exampleModalToggle2" aria-hidden="true"
+                    aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalToggleLabel2">confirmation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p> Réservation de {{this.userInfoRecup.nbJour}} jours. Pour {{this.userInfoRecup.sex}} {{this.userInfoRecup.nom}}  {{this.userInfoRecup.prenom}} La reservation a bien été prise en compte
+                                {{this.totalPrice}} €</p> 
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- fin modal -->
+
     </div>
+
+
+
+
+
 </div>
