@@ -31,9 +31,10 @@ export class GestionResaComponent implements OnInit {
     nombreDepers: "",
     dateArrive: "",
     nbJour: "",
-    nomChambre:""
-
+    nomChambre:"",
+    totalSej: Number
   }
+  totalPrice: any
 
   constructor(private gestionResaService : GestionResaService) { }
 
@@ -60,11 +61,21 @@ export class GestionResaComponent implements OnInit {
 
   addInfUser(userForm:any){
     console.log(userForm.value);
+
+    // console.log("AVANT calcul this.recupInfoUserResa.nbJour= "+ this.recupInfoUserResa.nbJour);
+    // console.log("AVANT thischambresAdmin.prix= "+ this.chambresAdmin.prix);
+
+    // this.totalPrice = (this.chambresAdmin.prix * this.recupInfoUserResa.nbJour)
+    // // this.totalPrice = parseInt(this.chambreInfoRecup.prix ) * parseInt(this.recupInfoUserResa.nbJour)
+    // this.recupInfoUserResa.totalSej = this.totalPrice
+    // console.log("APRES calcul this.recupInfoUserResa.nbJour= "+ this.recupInfoUserResa.nbJour);
+    // console.log("APRES thischambresAdmin.prix= "+ this.chambresAdmin.prix);
+    // console.log("this.totalPrice= "+ this.totalPrice);
     
   }
 
 
-  resaRecupInfoUser(r:any){
+  delResaRecupInfoUser(r:any){
     this.recupInfoUserResa = r;
     console.log("log R=" + r);
     

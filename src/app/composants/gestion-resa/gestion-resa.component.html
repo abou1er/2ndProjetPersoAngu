@@ -1,4 +1,11 @@
 <p>gestion-resa works!</p>
+
+
+<!-- Button modal add resa -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addResa">
+  Ajout réservation
+</button>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -13,12 +20,9 @@
             <td>Nombre de personne : {{r.nombreDepers}}</td>
             <td>Date d'arrivée : {{r.dateArrive}} </td>
             <td>Nombre de jour(s) prévu : {{r.nbJour}} </td>
-            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="resaRecupInfoUser(resa)" > Supprimer la reservation</button> </td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="delResaRecupInfoUser(resa)" > Supprimer la reservation</button> </td>
 
-            <td><!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addResa">
-                Ajout réservation
-              </button></td>
+          
         </tr>
     </tbody>
 </table>
@@ -38,10 +42,15 @@
       <div class="modal-body">
 
         <form (ngSubmit)="addInfUser(userForm)" #userForm="ngForm">
-          <div class="col-11 mb-3">
-            <label for="sex">Civilité</label>
-            <input type="text" name="sex" placeholder="sex" ngModel required>
-          </div>
+          <div class="mb-5" name="sex" class="col-md-4">
+            <label for="inputState" class="form-label">Civilité</label>
+            <select class="mb-5"name="sex"  class="form-select" ngModel required >
+
+                <option>monsieur</option>
+                <option>madame</option>
+
+            </select>
+        </div>
 
           <div class="col-11  mb-3">
             <label for="nom">Nom</label>
@@ -69,15 +78,23 @@
           </div>
 
           <div class="div">
-          <!-- select -->
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option *ngFor="let c of chambresAdmin" value="1" name="ville"> <p name="ville">{{c.nomDeChambre}}</p> <p name="prix"> {{c.prix}}€</p></option>
+          <!-- select ville-->
+          <select ngModel name="ville" class="form-select" aria-label="Default select example">
+            <option selected>ville</option>
+            <option *ngFor="let c of chambresAdmin"  name="ville"> {{c.ville}}</option>
             
           </select>
           <!-- finselect -->
-          <p></p>
           </div>
+
+          <div class="div">
+            <!-- select ville-->
+            <select ngModel name="prix" class="form-select" aria-label="Default select example">
+              <option selected>Prix</option>
+              <option *ngFor="let c of chambresAdmin" name="prix" > {{c.prix}}</option>
+            </select>
+            <!-- finselect -->
+            </div>
 
           <button type="submit">Valider</button>
           </form>
