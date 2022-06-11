@@ -9,21 +9,39 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th colspan="8">Réservation</th>
+            <th>Civilité  </th>
+            <th>Nom</th>
+            <th> Prénom </th>
+            <th>Nombre de personne </th>
+            <th>Date d'arrivée  </th>
+            <th>Nombre de jour(s) prévu  </th>
+            <th>TotalSej </th>
+            <th>Supprimer résa  </th>
+            <th>Réservé/Annulé </th>
+            <th>Modifier info </th>
+
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let r of reservations">
+        <tr *ngFor="let r of reservations;" [ngClass]="{'table-success' : r.confirme, 'table-danger': !r.confirme}">
             <td>Civilité : {{r.sex}} </td>
             <td>Nom : {{r.nom}}</td>
             <td> Prénom : {{r.prenom}}</td>
             <td>Nombre de personne : {{r.nombreDepers}}</td>
             <td>Date d'arrivée : {{r.dateArrive}} </td>
             <td>Nombre de jour(s) prévu : {{r.nbJour}} </td>
-            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="delResaRecupInfoUser(resa)" > Supprimer la reservation</button> </td>
+            <td>TotalSej : {{r.totalSej}} </td>
 
-          
-        </tr>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="deleteResa(r.id)" > Supprimer la reservation</button> </td>         
+            
+            <td><button type="button" class="btn btn-primary"  (click)="changeStatus(r)" > 
+              <strong *ngIf="r.confirme"> Réservé</strong>
+              <strong *ngIf="!r.confirme"  class="bg-warning"> Annulé</strong>
+            </button> </td>   
+            
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal"  > Modifier la reservation</button> </td> 
+      
+          </tr>
     </tbody>
 </table>
 
@@ -31,7 +49,7 @@
 
 
 
-<!-- Modal -->
+<!-- Modal ADDuser-->
 <div class="modal fade" id="addResa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
@@ -78,10 +96,10 @@
           </div>
 
           <div class="div">
-          <!-- select ville-->
-          <select ngModel name="ville" class="form-select" aria-label="Default select example">
-            <option selected>ville</option>
-            <option *ngFor="let c of chambresAdmin"  name="ville"> {{c.ville}}</option>
+          <!-- select nomDeChambre-->
+          <select ngModel name="nomDeChambre" class="form-select" aria-label="Default select example">
+            <option selected>nomDeChambre</option>
+            <option *ngFor="let c of chambresAdmin"  name="nomDeChambre"> {{c.nomDeChambre}}</option>
             
           </select>
           <!-- finselect -->
@@ -91,7 +109,7 @@
             <!-- select ville-->
             <select ngModel name="prix" class="form-select" aria-label="Default select example">
               <option selected>Prix</option>
-              <option *ngFor="let c of chambresAdmin" name="prix" > {{c.prix}}</option>
+              <option *ngFor="let c of chambresAdmin" name="prix" > {{+c.prix}}</option>
             </select>
             <!-- finselect -->
             </div>
@@ -108,24 +126,26 @@
   </div>
 </div>
 
+<!-- Modal UPDATE -->
+<!-- Button trigger modal -->
 <!-- Modal -->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Supprimer la reservation de {{this.recupInfoUserResa.sex}} {{this.recupInfoUserResa.nom}} </h5>
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       Etes vous sur de vouloir supprimer la reservation de {{this.recupInfoUserResa.sex}}  {{this.recupInfoUserResa.nom}} {{this.recupInfoUserResa.prenom}} du  {{this.recupInfoUserResa.dateArrive}} pour une durée de {{this.recupInfoUserResa.nbJour}}.
+        ...
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" (click)="delete(this.recupInfoUserResa.id)" class="btn btn-warning">Supprimé</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 <!-- fin modal -->
 
   

@@ -17,11 +17,17 @@ export class GestionResaService {
     return this.http.get("http://localhost:3000/chambre")
   }
 
+    confirmation(id:any, confirme:any){
+      return this.http.patch("http://localhost:3000/userInfo/"+id, {confirme:!confirme})
+    }
+
 
   addUsers(userForm:any){
     return this.http.post("http://localhost:3000/userInfo", userForm)
   }
 
+
+  
   deleteResa(id:any){
     return this.http.delete("http://localhost:3000/userInfo/"+id)
   }

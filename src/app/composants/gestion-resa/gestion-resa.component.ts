@@ -42,6 +42,7 @@ export class GestionResaComponent implements OnInit {
     this.resa();
     this.roomsAdmin()
     console.log(this.chambresAdmin);
+    
   }
 
   resa(){
@@ -71,25 +72,32 @@ export class GestionResaComponent implements OnInit {
     // console.log("APRES calcul this.recupInfoUserResa.nbJour= "+ this.recupInfoUserResa.nbJour);
     // console.log("APRES thischambresAdmin.prix= "+ this.chambresAdmin.prix);
     // console.log("this.totalPrice= "+ this.totalPrice);
-    
-  }
-
-
-  delResaRecupInfoUser(r:any){
-    this.recupInfoUserResa = r;
-    console.log("log R=" + r);
-    
-  }
-
-
-
-  delete(id:any){
-
-    console.log("resa id = " + id + " supprimé");
-    // this.gestionResaService.deleteResa(id).subscribe(()=>{
-    //   console.log("resa id : " + id + "supprimé");
+    let data = userForm.value 
+    this.gestionResaService.addUsers(data).subscribe(data=>{
+      console.log("les données sont enregistrées.")
       
-    // })
+    console.log("AVANT calcul this.recupInfoUserResa.nbJour= "+ this.recupInfoUserResa.nbJour);
+    console.log("AVANT thischambresAdmin.prix= "+ this.chambresAdmin.prix);
+
+    })
+    
+  }
+
+
+  changeStatus(r:any){
+    this.gestionResaService.confirmation(r.id, r.confirme).subscribe((data)=> {
+      this.resa()
+    })
+
+  }
+
+
+  deleteResa(id:any){
+    console.log("resa id = " + id + " supprimé");
+    this.gestionResaService.deleteResa(id).subscribe(()=>{
+      console.log("resa id : " + id + "supprimé");
+      
+    })
   }
 
 }

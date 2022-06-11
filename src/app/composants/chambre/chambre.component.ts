@@ -40,13 +40,13 @@ export class ChambreComponent implements OnInit {
 
   recupInfoRoom(c: any) {
     this.chambreInfoRecup = c;
-    console.log(this.chambreInfoRecup.prix , " inforecup");   
+    console.log(this.chambreInfoRecup.prix , " prixinforecup");   
   }
 
+  
   addUser(u:any){
     this.userInfoRecup = u
     console.log(this.userInfoRecup);
-
     // Calcul du prix de la chambre
     //On recupere le prix de le chambre et on le multiple par le nombre de jour reservés
     this.totalPrice = (this.chambreInfoRecup.prix * this.userInfoRecup.nbJour)
