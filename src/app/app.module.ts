@@ -14,6 +14,7 @@ import { GestChambreComponent } from './composants/gest-chambre/gest-chambre.com
 import { FooterComponent } from './composants/footer/footer.component';
 import { AjouterunechambreComponent } from './composants/ajouterunechambre/ajouterunechambre.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './composants/login/login.component';
 
 
 
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     GestionResaComponent,
     GestChambreComponent,
     FooterComponent,
-    AjouterunechambreComponent
+    AjouterunechambreComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -25,4 +25,11 @@ export class ChambreService {
   roomUpd(r:any){
     return this.http.put("http://localhost:3000/chambre/"+r.id, r)
   }
+
+
+  
+  paginate(p:any, cont:any){
+    return this.http.get(`http://localhost:3000/chambre?_page=${p}&_limit=${cont}`)  
+  
+  }
 }

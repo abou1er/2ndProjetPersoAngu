@@ -1,0 +1,28 @@
+<p>login works!</p>
+<div class="card">
+    <h5 class="card-header">Login</h5>
+
+    <div class="card-body">
+        <!-- form -->
+        <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Pseudo</label>
+              <input type="email" class="form-control" placeholder="Username" id="exampleInputEmail1" name="username" aria-describedby="emailHelp" [(ngModel)="username"]>
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" placeholder="Password" name="password"  class="form-control" id="exampleInputPassword1" [(ngModel)="password"]>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary" (click)="login()">Se connecter</button>
+            
+          </form>
+        <!-- fin form connect -->
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>

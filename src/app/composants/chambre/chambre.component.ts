@@ -7,6 +7,13 @@ import { ChambreService } from 'src/app/services/chambre.service';
   styleUrls: ['./chambre.component.css']
 })
 export class ChambreComponent implements OnInit {
+
+  pages =[ 1,2,3,4,5,6,7,8,9, ];
+  // pages = new Array(12);
+  // un array qui recupere une valeur et qui le transforme 
+
+  // exemlpe si la valeur est 30, 
+
   chambres: any;
   chambreInfoRecup: any;
   prixChambre: any ;
@@ -27,16 +34,17 @@ export class ChambreComponent implements OnInit {
   constructor(private chambreService: ChambreService) { }
 
   ngOnInit(): void {
-    this.getRooms()
+    // this.getRooms();
+    this.pagination(this.pages)
   }
 
-  getRooms() {
-    this.chambreService.getRooms().subscribe(data => {
-      this.chambres = data;
-      console.log(this.chambres);
+  // getRooms() {
+  //   this.chambreService.getRooms().subscribe(data => {
+  //     this.chambres = data;
+  //     console.log(this.chambres);
 
-    })
-  }
+  //   })
+  // }
 
   recupInfoRoom(c: any) {
     this.chambreInfoRecup = c;
@@ -60,5 +68,33 @@ export class ChambreComponent implements OnInit {
     })
 
   }
+
+
+
+  pagination(pI:any){
+      
+        let numbLimit = 2;
+
+        // if (this.chambres.length > this.pages.length){
+        //   this.pages.length = ++this.pages.length
+        // }
+        // console.log("this.pages.length"+ this.pages.length);
+
+        // console.log("pI avant num de page"+ pI);
+
+        this.chambreService.paginate(pI, numbLimit).subscribe(resultDeretourPaginate=>{
+    
+        this.chambres = resultDeretourPaginate; 
+
+        // console.log("------------------------------");
+        // console.log("chambres.length"+ this.chambres.length);
+        // console.log("this.pages.length"+ this.pages.length);
+        // console.log("/////////////////////////////////////////");
+
+        
+        
+
+        })
+        }
 
 }
