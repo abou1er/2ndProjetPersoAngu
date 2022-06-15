@@ -19,7 +19,11 @@ export class AppComponent {
   isAdmin:boolean = false
   conectWrong:boolean = false
 
-  authen : any 
+  authen : any  = {
+    username :"Pedro",
+    mdp : "1234"
+    }
+
     // auth : any = {
     // username :"Pedro",
     // mdp : "1234"
