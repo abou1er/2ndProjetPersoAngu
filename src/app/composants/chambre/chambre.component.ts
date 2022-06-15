@@ -70,29 +70,23 @@ export class ChambreComponent implements OnInit {
   }
 
 
-
   pagination(pI:any){
       
-        let numbLimit = 2;
+        let numbLimit = 3;
 
         // if (this.chambres.length > this.pages.length){
         //   this.pages.length = ++this.pages.length
         // }
         // console.log("this.pages.length"+ this.pages.length);
-
         // console.log("pI avant num de page"+ pI);
 
         this.chambreService.paginate(pI, numbLimit).subscribe(resultDeretourPaginate=>{
     
         this.chambres = resultDeretourPaginate; 
-
         // console.log("------------------------------");
         // console.log("chambres.length"+ this.chambres.length);
         // console.log("this.pages.length"+ this.pages.length);
         // console.log("/////////////////////////////////////////");
-
-        
-        
 
         })
         }

@@ -16,28 +16,106 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="chambre">Chambre</a>
         </li>
+
+        <li>
+
+
+<!-- Modal CONNEXION-->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Connexion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+ <!-- conect good -->
+ <div *ngIf="conectGood" class="container justify-content-center">
+  <p class="text-success text-center"> Connexion réussi. Bonjour <strong> {{authen.username}} </strong></p>
+</div>
+
+         <!-- FORM addUser -->
+
+         <div class="container mt-5">
+          <form #fConnect="ngForm" class="row  g-3 shadow-lg mb-4 p-2 bg-body rounded">
+
+
+              <div class="col-md-12">
+                  <label for="username" class="form-label">pseudo</label>
+                  <input type="text" class="form-control" name="username" ngModel required>
+
+              </div>
+
+              <div class="col-md-12">
+                  <label for="mdp" class="form-label">Mot de passe</label>
+                  <input type="password" class="form-control" name="mdp" ngModel required>
+
+              </div>
+
+              <div class="modal-footer">
+                <button type="button"(click)="onconect(fConnect.value)" *ngIf="!isAdmin" class="btn btn-secondary" >Connect <i class="fa-regular fa-user"></i></button>
+                
+              </div>
+
+          </form>
+
+      </div>
+      <!-- fin form -->
+
+      <!-- conect wrong -->
+<div *ngIf="conectWrong" class="container justify-content-center">
+  <p class="text-danger text-center"> le mot de passe ou pseudo ne correspond pas </p>
+</div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+        </li>
       </ul>
     </div>
   </div>
 
-      
-  
-  
+
+
 <!-- dropdown button -->
       <span class="navbar-text me-5">
-        <div class="input-group float mb-3">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</button>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" routerLink="gestion-resa">Gestion des résevations</a></li>
-          <li><a class="dropdown-item" routerLink="gest-chambre">Gestion des chambres</a></li>
-          
-        </ul>
-      </div>
+
+                  <!-- Button trigger modal CONNEXION -->
+<button *ngIf="!isAdmin" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+  CONNEXION
+</button>
+
+        
+<!-- <div  (click)="onconect()" *ngIf="isAdmin" class="input-group float mb-3"> -->
+  <div   *ngIf="isAdmin" class="input-group float mb-3">
+  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{authen.username}} Administrateur <i class="fa-solid fa-user-doctor"></i></button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><a class="dropdown-item" routerLink="gestion-resa">Gestion des résevations</a></li>
+    <li><a class="dropdown-item" routerLink="gest-chambre">Gestion des chambres</a></li>
+
+    <li > <a class="dropdown-item" (click)="disconect()"> Déconnection </a></li>
+    
+
+
+    
+  </ul>
+</div>
+
       </span>
     <!-- dropdown button -->
 
 
 </nav>
+
+
+
+
+<!-- 
+<span class="d-none p-2 bg-primary text-white">d-block</span>
+<span class="d-block p-2 bg-dark text-white">d-block</span> -->
 
 <router-outlet></router-outlet>
 
